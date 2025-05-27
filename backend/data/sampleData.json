@@ -1,0 +1,96 @@
+{
+    "companies": [
+      {
+        "id": "comp1",
+        "name": "TechCorp Solutions",
+        "industry": "Information Technology",
+        "companySize": "500-1000",
+        "foundedYear": 2005,
+        "website": "https://www.techcorpsolutions.com",
+        "location": "San Francisco, CA",
+        "description": "TechCorp Solutions is a leading provider of innovative software solutions for businesses of all sizes."
+      },
+      {
+        "id": "comp2",
+        "name": "GreenEnergy Innovations",
+        "industry": "Renewable Energy",
+        "companySize": "100-500",
+        "foundedYear": 2010,
+        "website": "https://www.greenenergy-innovations.com",
+        "location": "Austin, TX",
+        "description": "GreenEnergy Innovations is dedicated to developing sustainable energy solutions for a cleaner future."
+      }
+    ],
+    "jobs": [
+      {
+        "id": "job1",
+        "companyId": "comp1",
+        "title": "Full Stack Developer",
+        "description": "We are seeking a talented Full Stack Developer to join our growing team...",
+        "requirements": [
+          "3+ years of experience in web development",
+          "Proficiency in JavaScript, React, and Node.js",
+          "Experience with database design and ORM tools",
+          "Strong problem-solving skills and attention to detail"
+        ],
+        "salary": 95000,
+        "applicationDeadline": "2023-06-30",
+        "jobType": "full-time",
+        "location": "San Francisco, CA"
+      },
+      {
+        "id": "job2",
+        "companyId": "comp2",
+        "title": "Renewable Energy Engineer",
+        "description": "Join our team of passionate engineers working on cutting-edge renewable energy projects...",
+        "requirements": [
+          "Bachelor's degree in Electrical or Mechanical Engineering",
+          "2+ years of experience in renewable energy projects",
+          "Knowledge of solar and wind energy systems",
+          "Strong analytical and project management skills"
+        ],
+        "salary": 85000,
+        "applicationDeadline": "2023-07-15",
+        "jobType": "full-time",
+        "location": "Austin, TX"
+      }
+    ],
+    "students": [
+      {
+        "id": "stud1",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "course": "Computer Science",
+        "graduationYear": 2024,
+        "skills": ["JavaScript", "Python", "React", "Node.js"]
+      },
+      {
+        "id": "stud2",
+        "name": "Bob Smith",
+        "email": "bob.smith@example.com",
+        "course": "Electrical Engineering",
+        "graduationYear": 2023,
+        "skills": ["Circuit Design", "MATLAB", "Power Systems"]
+      }
+    ],
+    "applications": [
+      {
+        "id": "app1",
+        "jobId": "job1",
+        "studentId": "stud1",
+        "status": "submitted",
+        "submittedAt": "2023-05-01T10:30:00Z",
+        "resumeUrl": "/uploads/alice_johnson_resume.pdf"
+      },
+      {
+        "id": "app2",
+        "jobId": "job2",
+        "studentId": "stud2",
+        "status": "under review",
+        "submittedAt": "2023-05-02T14:45:00Z",
+        "resumeUrl": "/uploads/bob_smith_resume.pdf"
+      }
+    ]
+  }
+  
+  

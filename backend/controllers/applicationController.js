@@ -55,16 +55,13 @@ export const getMyApplications = async (req, res) => {
   try {
     const userId = req.user._id;
     const applications = await Application.find({ student: userId }).populate('job');
-    res.json(applications.map(app => ({
-      _id: app._id,
-      jobTitle: app.job.title,
-      status: app.status
-    })));
+    res.json(applications);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error fetching applications' });
   }
 };
+
 
 export const applyToJob = async (req, res) => {
   try {

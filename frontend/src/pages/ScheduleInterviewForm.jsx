@@ -13,19 +13,18 @@ const ScheduleInterviewForm = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchApplications = async () => {
-      try {
-        const res = await api.get('/applications/my');
-        const validApplications = res.data.filter(
-          app => app.job && app.job.company // Ensure job has company assigned
-        );
-        setApplications(validApplications);
-      } catch (err) {
-        console.error('Failed to load applications:', err);
-      }
-    };
-    fetchApplications();
-  }, []);
+  const fetchApplications = async () => {
+    try {
+      const res = await api.get('/applications/my');
+      const validApplications = res.data.filter(app => app.job);
+      setApplications(validApplications);
+    } catch (err) {
+      console.error('Failed to load applications:', err);
+    }
+  };
+  fetchApplications();
+}, []);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -62,11 +61,12 @@ const ScheduleInterviewForm = () => {
           className="w-full p-2 border rounded"
         >
           <option value="">Select Application</option>
-            {applications.map((app) => (
-          <option key={app._id} value={app._id}>
-            {app.job.title} at {app.job.company.name} ({app.status})
-           </option>
-            ))}
+           {applications.map((app) => (
+    <option key={app._id} value={app._id}>
+      {app.job?.title} ({app.status})
+    </option>
+  ))}
+           
            
         </select>
         <input
@@ -117,6 +117,7 @@ const ScheduleInterviewForm = () => {
           </a>
         </div>
       )}
+
     </div>
   );
 };

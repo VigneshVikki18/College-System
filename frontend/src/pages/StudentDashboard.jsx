@@ -41,14 +41,19 @@ const StudentDashboard = () => {
           {/* Available Jobs */}
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4">Available Jobs</h2>
-            {jobs.length === 0 ? <p>No jobs available.</p> : (
+            {jobs.length === 0 ? (
+              <p>No jobs available.</p>
+            ) : (
               <div className="grid md:grid-cols-2 gap-4">
                 {jobs.map((job) => (
                   <div key={job._id} className="border p-4 rounded shadow bg-white">
                     <h3 className="text-lg font-semibold">{job.title}</h3>
                     <p className="text-sm text-gray-600">{job.companyName}</p>
                     <p className="text-sm text-gray-500 mb-2">Location: {job.location}</p>
-                    <button onClick={() => navigate(`/apply/${job._id}`)} className="mt-2 bg-blue-600 text-white px-4 py-1 rounded">
+                    <button
+                      onClick={() => navigate(`/apply/${job._id}`)}
+                      className="mt-2 bg-blue-600 text-white px-4 py-1 rounded"
+                    >
                       Apply Now
                     </button>
                   </div>
@@ -57,17 +62,23 @@ const StudentDashboard = () => {
             )}
           </section>
 
-          {/* Application Status */}
+          {/* My Applications */}
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4">My Applications</h2>
-            {applications.length === 0 ? <p>No applications submitted.</p> : (
+            {applications.length === 0 ? (
+              <p>No applications submitted.</p>
+            ) : (
               <ul className="space-y-2">
-                {applications.map(app => (
+                {applications.map((app) => (
                   <li key={app._id} className="bg-white p-3 rounded shadow border">
                     <div className="flex justify-between items-center">
-                      <span>{app.jobTitle}</span>
-                      <span className={`text-sm font-semibold ${app.status === 'shortlisted' ? 'text-green-600' : 'text-gray-600'}`}>
-                        {app.status}
+                      <span>{app.job?.title || 'Untitled Job'}</span>
+                      <span
+                        className={`text-sm font-semibold ${
+                          app.status === 'shortlisted' ? 'text-green-600' : 'text-gray-600'
+                        }`}
+                      >
+                        {app.status || 'Pending'}
                       </span>
                     </div>
                   </li>
@@ -76,19 +87,32 @@ const StudentDashboard = () => {
             )}
           </section>
 
-          {/* Interviews */}
+          {/* Upcoming Interviews */}
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4">Upcoming Interviews</h2>
-            {interviews.length === 0 ? <p>No interviews scheduled.</p> : (
+            {interviews.length === 0 ? (
+              <p>No interviews scheduled.</p>
+            ) : (
               <ul className="space-y-2">
-                {interviews.map(iv => (
+                {interviews.map((iv) => (
                   <li key={iv._id} className="bg-white p-3 rounded shadow border">
                     <div className="flex justify-between">
                       <div>
-                        <p className="font-semibold">{iv.jobTitle}</p>
-                        <p className="text-sm text-gray-500">{iv.companyName}</p>
+                        <p className="font-semibold">{iv.job?.title || 'Untitled Job'}</p>
+                        <p className="text-sm text-gray-500">{iv.companyId?.name || 'Unknown Company'}</p>
+                        <p className="text-sm text-gray-500">
+                          {iv.format === 'virtual' && iv.interviewLink ? (
+                            <a href={iv.interviewLink} className="text-blue-600 underline" target="_blank" rel="noreferrer">
+                              Join Interview
+                            </a>
+                          ) : (
+                            `Mode: ${iv.format}`
+                          )}
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-700">{new Date(iv.date).toLocaleString()}</p>
+                      <p className="text-sm text-gray-700 text-right">
+                        {new Date(iv.date).toLocaleString()}
+                      </p>
                     </div>
                   </li>
                 ))}

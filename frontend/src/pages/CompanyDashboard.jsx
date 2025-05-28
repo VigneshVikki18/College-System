@@ -9,7 +9,7 @@ const CompanyDashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await api.get('/jobs/my-jobs'); // 👈 Make sure this route works
+        const res = await api.get('/jobs/my-jobs');
         setJobs(res.data);
       } catch (error) {
         console.error('Error fetching jobs:', error);
@@ -18,6 +18,18 @@ const CompanyDashboard = () => {
 
     fetchJobs();
   }, []);
+
+  const handleDelete = async (jobId) => {
+    if (!window.confirm('Are you sure you want to delete this job posting?')) return;
+
+    try {
+      await api.delete(`/jobs/${jobId}`);
+      setJobs((prevJobs) => prevJobs.filter((job) => job._id !== jobId));
+    } catch (error) {
+      console.error('Error deleting job:', error);
+      alert('Failed to delete the job.');
+    }
+  };
 
   return (
     <div className="p-6">
@@ -50,18 +62,30 @@ const CompanyDashboard = () => {
                     {job.applications?.length || 0} applications
                   </p>
                 </div>
-                <div className="space-x-2">
+                <div className="space-x-2 flex flex-wrap gap-2">
                   <button
-                    onClick={() => navigate(`/job/${job._id}`)}
+                    onClick={() => navigate(`/apply/${job._id}`)}
                     className="text-blue-600 hover:underline"
                   >
                     View
                   </button>
                   <button
-                    onClick={() => navigate(`/job/${job._id}/applications`)}
+                    onClick={() => navigate(`/applications`)}
                     className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
                   >
                     View Applicants
+                  </button>
+                  <button
+                    onClick={() => navigate(`/edit-job/${job._id}`)}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(job._id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    Delete
                   </button>
                 </div>
               </div>

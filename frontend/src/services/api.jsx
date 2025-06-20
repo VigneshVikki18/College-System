@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: 'https://college-system-rc7x.onrender.com',
+  baseURL: 'https://college-system-rc7x.onrender.com/api',
 });
 
 // ✅ Add request interceptor to include token

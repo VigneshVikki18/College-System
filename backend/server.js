@@ -33,7 +33,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://splendid-mochi-b37ea8.netlify.app',
   credentials: true 
 }));
 

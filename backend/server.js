@@ -33,7 +33,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middlewares
 app.use(cors({
-  origin: 'https://college-system.netlify.app',
+  origin: 'http://localhost:5173',
   credentials: true 
 }));
 

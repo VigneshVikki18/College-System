@@ -79,7 +79,7 @@ const Register = () => {
         >
           <option value="student">Student</option>
           <option value="company">Company</option>
-          <option value="admin">Admin</option>
+          
         </select>
 
         <button

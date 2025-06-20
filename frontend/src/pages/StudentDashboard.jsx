@@ -30,6 +30,10 @@ const StudentDashboard = () => {
     }
   };
 
+  const hasApplied = (jobId) => {
+    return applications.some((app) => app.job?._id === jobId);
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
@@ -50,12 +54,22 @@ const StudentDashboard = () => {
                     <h3 className="text-lg font-semibold">{job.title}</h3>
                     <p className="text-sm text-gray-600">{job.companyName}</p>
                     <p className="text-sm text-gray-500 mb-2">Location: {job.location}</p>
-                    <button
-                      onClick={() => navigate(`/apply/${job._id}`)}
-                      className="mt-2 bg-blue-600 text-white px-4 py-1 rounded"
-                    >
-                      Apply Now
-                    </button>
+
+                    {hasApplied(job._id) ? (
+                      <button
+                        disabled
+                        className="mt-2 bg-gray-400 text-white px-4 py-1 rounded cursor-not-allowed"
+                      >
+                        Already Applied
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => navigate(`/apply/${job._id}`)}
+                        className="mt-2 bg-blue-600 text-white px-4 py-1 rounded"
+                      >
+                        Apply Now
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>

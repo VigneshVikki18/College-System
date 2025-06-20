@@ -29,5 +29,23 @@ router.get('/job/:jobId', protect, getApplicationsByJob);
 
 // Only one POST route, protected and with resume upload
 router.post('/', protect, upload.single('resume'), applyToJob);
+router.patch('/applications/:id/status', async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  await Application.findByIdAndUpdate(id, { status });
+  res.sendStatus(200);
+});
+router.patch('/applications/:id/schedule', async (req, res) => {
+  const { id } = req.params;
+  const { date, time } = req.body;
+  await Application.findByIdAndUpdate(id, {
+    status: 'Interview Scheduled',
+    interviewDate: date,
+    interviewTime: time,
+  });
+  res.sendStatus(200);
+});
+
+
 
 export default router;

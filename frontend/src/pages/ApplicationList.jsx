@@ -6,8 +6,12 @@ const ApplicationList = () => {
 
   useEffect(() => {
     const fetchApplications = async () => {
-      const res = await api.get('/applications');
-      setApplications(res.data);
+      try {
+        const res = await api.get('/applications/my'); // ✅ Only fetch user's applications
+        setApplications(res.data);
+      } catch (err) {
+        console.error('Error fetching applications:', err);
+      }
     };
     fetchApplications();
   }, []);
@@ -22,7 +26,7 @@ const ApplicationList = () => {
           <div key={app._id} className="border p-4 rounded mb-4 shadow-sm">
             <h3 className="text-xl font-semibold">{app.job?.title}</h3>
             <p>Status: <strong>{app.status}</strong></p>
-            <p>Resume: <a href={app.resumeLink} target="_blank" className="text-blue-500 underline">View</a></p>
+            <p>Resume: <a href={app.resume} target="_blank" className="text-blue-500 underline">View</a></p>
             <p>Cover Letter: {app.coverLetter}</p>
           </div>
         ))

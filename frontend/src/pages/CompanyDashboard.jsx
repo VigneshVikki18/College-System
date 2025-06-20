@@ -63,14 +63,9 @@ const CompanyDashboard = () => {
                   </p>
                 </div>
                 <div className="space-x-2 flex flex-wrap gap-2">
-                  <button
-                    onClick={() => navigate(`/apply/${job._id}`)}
-                    className="text-blue-600 hover:underline"
-                  >
-                    View
-                  </button>
-                  <button
-                    onClick={() => navigate(`/applications`)}
+                 
+                 <button
+                    onClick={() => navigate(`/applications/${job._id}`)}
                     className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
                   >
                     View Applicants

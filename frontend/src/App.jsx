@@ -24,6 +24,9 @@ import ScheduleInterviewForm from './pages/ScheduleInterviewForm';
 import ManageDrives from './pages/ManageDrives';
 import DriveReport from './pages/DriveReport';
 import RecruitmentDashboard from './pages/RecruitmentDashboard';
+import EditJob from './pages/EditJob';
+import JobApplications from './pages/JobApplications'; 
+
 
 
 
@@ -58,8 +61,9 @@ function App() {
           <Route path="/manage-drives" element={<PrivateRoute><ManageDrives /></PrivateRoute>} />
           <Route path="/drive-report" element={<PrivateRoute><DriveReport /></PrivateRoute>} />
           <Route path="/recruitment-dashboard" element={<PrivateRoute><RecruitmentDashboard /></PrivateRoute>} />
-
           <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
+          <Route path="/edit-job/:id" element={<PrivateRoute><EditJob /></PrivateRoute>} />
+          <Route path="/applications/:jobId" element={<PrivateRoute><JobApplications /></PrivateRoute>} />
 
           {/* Catch-all for undefined routes */}
           <Route path="*" element={<div className="p-4 text-center">404 - Page Not Found</div>} />
